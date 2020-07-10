@@ -1,6 +1,6 @@
 const isActive = document.getElementsByClassName("is-active");
 const razas = document.getElementById("razas");
-const searchRazas = document.getElementById("searchRazas");
+const bntsearchRazas = document.getElementById("searchRazas");
 const searchFiltros = document.getElementById("searchFiltros");
 const menus = document.querySelectorAll(".tabs li");
 const tabsSections = document.querySelectorAll(".tab-section");
@@ -20,6 +20,7 @@ menus.forEach((element) => {
     element.classList.add("is-active");
     let href = getHash(element.children[0].href);
     addClassHidden(href);
+    document.getElementById(href).classList.remove("is-hidden");
   });
 });
 
@@ -45,4 +46,10 @@ const randomGatite = async () => {
   catImg.height = randomGatit.height;
 };
 
-randomGatite();
+const searchRazas = async (name) => {
+  const response = await fetch(
+    `https://api.thecatapi.com/v1/breeds/search?q=${name}`
+  );
+  const getRaza = await response.json();
+  console.log(getRaza);
+};
