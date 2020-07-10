@@ -6,6 +6,8 @@ const menus = document.querySelectorAll(".tabs li");
 const tabsSections = document.querySelectorAll(".tab-section");
 const randomGatit = document.getElementById("random");
 const btnRandomCat = document.getElementById("random-cat-btn");
+const inputSearchRazas = document.getElementById("breed-search-input");
+const btnInputSearchRazas = document.getElementById("breed-search-btn");
 
 const clearAllClass = () => {
   menus.forEach((element) => {
@@ -51,5 +53,12 @@ const searchRazas = async (name) => {
     `https://api.thecatapi.com/v1/breeds/search?q=${name}`
   );
   const getRaza = await response.json();
+
   console.log(getRaza);
 };
+
+btnInputSearchRazas.addEventListener("click", (e) => {
+  searchRazas(inputSearchRazas.value);
+});
+
+randomGatite();
